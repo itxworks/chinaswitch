@@ -42,6 +42,12 @@ ENV DISPLAY=:99
 # Set the working directory
 WORKDIR /app
 
+# Ensure /app is writable
+RUN mkdir -p /app && chmod 777 /app
+
+# Touch results.json
+RUN touch /app/results.json
+
 # Copy requirements.txt and install Python dependencies
 COPY requirements.txt requirements.txt
 # Install Python dependencies

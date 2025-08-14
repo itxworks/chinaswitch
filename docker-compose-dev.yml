@@ -1,13 +1,15 @@
 services:
   check-switch-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: check-switch
-    image: ghcr.io/itxworks/chinaswitch:latest
     restart: always
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./config.json:/app/config.json:ro
-      - shared-data:/app/results.json:ro
+      - shared-data:/app
       
   switch-www:
     image: nginx:latest
@@ -20,6 +22,7 @@ services:
       - shared-data:/usr/share/nginx/html
       - ./nginx_config.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - 9980:80
+      - 80:80
+
 volumes:
   shared-data:
