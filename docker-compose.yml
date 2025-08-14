@@ -8,9 +8,9 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
+      - ./config.json:/app/config.json:ro
       - shared-data:/app
-    #command: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x16" python3 check_switch.py
-
+      
   switch-www:
     image: nginx:latest
     container_name: switch-www
