@@ -1,0 +1,25 @@
+{
+    "switches": [
+        {
+            "login_url": "http://192.168.30.245/login.cgi",
+            "port_url": "http://192.168.30.245/port.cgi",
+            "username": "admin",
+            "password": "admin"
+        },
+        {
+            "login_url": "http://192.168.30.244/login.cgi",
+            "port_url": "http://192.168.30.244/port.cgi",
+            "username": "admin",
+            "password": "admin"
+        },
+        {
+            "login_url": "http://192.168.30.242/login.cgi",
+            "port_url": "http://192.168.30.242/port.cgi",
+            "username": "admin",
+            "password": "admin"
+        }
+    ],
+    "schedule": {
+        "interval_minutes": 10
+    }
+}
