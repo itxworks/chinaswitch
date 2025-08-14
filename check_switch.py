@@ -125,9 +125,9 @@ def process_results(all_results):
 
     # Save the updated results to JSON
     if is_docker():
-        with open('/app/results.json', 'w') as f:
+        with open('/data/results.json', 'w') as f:
             json.dump(all_results, f, indent=4)
-        print("All results with table data saved to /app/results.json")
+        print("All results with table data saved to /data/results.json")
     else:
         with open('results.json', 'w') as f:
             json.dump(all_results, f, indent=4)
@@ -224,16 +224,16 @@ def check_switches():
                 check_geckodriver_log()  # Call to print geckodriver log
 
         combined_html = f"<html><head><title>Results</title></head><body><h3>Report generated on: {time.strftime('%Y-%m-%d %H:%M:%S')}</h3>"
-        
+
         for result in all_results:
             #combined_html += f"<h2>Results for {result['login_url']}</h2>"
             combined_html += f'<h2>Results for <a href="{result["login_url"]}" target="_blank">{result["login_url"]}</a></h2>'
             combined_html += result['content']
         combined_html += "</body></html>"
         if is_docker():
-            with open('/app/index.html', 'w') as f:
+            with open('/data/index.html', 'w') as f:
                 f.write(combined_html)
-            print("All results saved to /app/index.html")
+            print("All results saved to /data/index.html")
             process_results(all_results)
         else:
             with open('index.html', 'w') as f:

@@ -45,8 +45,8 @@ WORKDIR /app
 # Ensure /app is writable
 RUN mkdir -p /app && chmod 777 /app
 
-# Touch results.json
-RUN touch /app/results.json
+# Create data directory and initial files
+RUN mkdir -p /data && chmod 777 /data  && touch /data/results.json /data/index.html
 
 # Copy requirements.txt and install Python dependencies
 COPY requirements.txt requirements.txt
