@@ -7,7 +7,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - ./config.json:/app/config.json:ro
-      - shared-data:/app/results.json:ro
+      - shared-data:/data
       
   switch-www:
     image: nginx:latest
