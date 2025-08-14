@@ -2,14 +2,13 @@
 FROM python:3.12-slim-bookworm
 
 
-RUN apt-get update && \
-    apt-get install -y wget gnupg && \
-    DISTRO="$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2)" && \
-    wget -qO- https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /usr/share/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x $DISTRO main" \
-        > /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update && \
-    apt-get install -y nodejs ffmpeg firefox-esr libgtk-3-0 libdbus-glib-1-2 xvfb \
+RUN apt-get update && apt-get install -y wget gnupg curl ca-certificates \
+    && DISTRO="$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2)" \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | tee /usr/share/keyrings/nodesource.gpg > /dev/null \
+    && echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x $DISTRO main" \
+        > /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update \
+    && apt-get install -y nodejs ffmpeg firefox-esr libgtk-3-0 libdbus-glib-1-2 xvfb \
     && rm -rf /var/lib/apt/lists/*
 
 
